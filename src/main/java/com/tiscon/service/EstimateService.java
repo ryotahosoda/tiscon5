@@ -47,7 +47,7 @@ public class EstimateService {
         BeanUtils.copyProperties(dto, customer);
         estimateDAO.insertCustomer(customer);
 
-        if (dto.hasWashingMachineSettingOption()) {
+        if (dto.getHasWashingMachineSettingOption()) {
             CustomerOptionService washingMachine = new CustomerOptionService();
             washingMachine.setCustomerId(customer.getCustomerId());
             washingMachine.setServiceId(OptionalServiceType.WASHING_MACHINE.getCode());
@@ -88,7 +88,7 @@ public class EstimateService {
         // オプションサービスの料金を算出する。
         int priceForOptionalService = 0;
 
-        if (dto.hasWashingMachineSettingOption()) {
+        if (dto.getHasWashingMachineSettingOption()) {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
         int [] a = {priceForDistance, pricePerTruck, priceForOptionalService, priceForDistance + pricePerTruck + priceForOptionalService};
