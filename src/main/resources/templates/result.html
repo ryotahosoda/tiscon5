@@ -14,9 +14,29 @@
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
   <form th:action="@{/order}" th:object="${userOrderForm}" class="form-horizontal" method="post">
-    <h1>概算お見積り結果</h1>
+    <center><h1>概算お見積り結果</h1></center>
     <div class="col-sm-12">
-      <h2>概算お見積り結果は<span th:text="${price}"></span>円です。</h2>
+      <center><h2>概算お見積り結果は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
+      <h4>内訳</h4>
+      <table class="table table-bordered">
+        <col span="1" style="background-color: #A9B7C7;">
+        <col span="2" style="background-color: #FFFFFF;">
+        <tbody>
+        <tr>
+          <th style="width: 40%">距離</th>
+          <td><span th:text="${price[0]}"></span>円</td>
+        </tr>
+        <tr>
+          <th>トラック</th>
+          <td><span th:text="${price[1]}"></span>円</td>
+        </tr>
+        <tr>
+          <th>オプション</th>
+          <td><span th:text="${price[2]}"></span>円</td>
+        </tr>
+        </tbody>
+      </table>
+
       <h4>個人情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
