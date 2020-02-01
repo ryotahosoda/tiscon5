@@ -68,6 +68,14 @@ public class EstimateController {
     }
 
     /**
+     * ブラウザを閉じる
+     */
+    @PostMapping(value = "submit", params = "WindowClose")
+    String WindowClose(Model model) {
+        return "top";
+    }
+
+    /**
      * 確認画面に遷移する。
      *
      * @param userOrderForm 顧客が入力した見積もり依頼情報
@@ -75,10 +83,12 @@ public class EstimateController {
      * @return 遷移先
      */
     @PostMapping(value = "submit", params = "confirm")
-    String confirm(UserOrderForm userOrderForm, Model model) {
-
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+    String confirm(@Validated  UserOrderForm userOrderForm, BindingResult result, Model model) {
         model.addAttribute("userOrderForm", userOrderForm);
+        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        if (result.hasErrors()) {
+            return "input";
+        }
         return "confirm";
     }
 
