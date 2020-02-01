@@ -35,7 +35,7 @@ public class EstimateController {
         this.estimateService = estimateService;
     }
 
-    @GetMapping("")
+    @GetMapping("")//何もないところが呼び出される
     String index(Model model) {
         return "top";
     }
