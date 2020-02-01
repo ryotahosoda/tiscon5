@@ -113,11 +113,11 @@ public class UserOrderDto {
         this.washingMachine = washingMachine;
     }
 
-    public boolean hasWashingMachineSettingOption() {
+    public boolean getHasWashingMachineSettingOption() {
         return hasWashingMachineSettingOption;
     }
 
-    public void setWashingMachineSettingOption(Boolean hasWashingMachineSettingOption) {
+    public void setHasWashingMachineSettingOption(Boolean hasWashingMachineSettingOption) {
         this.hasWashingMachineSettingOption = hasWashingMachineSettingOption;
     }
 }
