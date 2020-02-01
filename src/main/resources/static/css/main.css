@@ -267,10 +267,10 @@ td {
 .cp_stepflow02 > li.completed .bubble::before {
 	background-color: #4dd0e1;
 }
-.cp_stepflow02 > li.completed > .bubble + span::before {
+/*.cp_stepflow02 > li.completed > .bubble + span::before {
 	font-family: Fontawesome;
 	content: '\f00c';
-}
+}*/
 .cp_stepflow02 > li:last-child .bubble::after,
 .cp_stepflow02 > li:last-child .bubble::before {
 	width: 0%;
