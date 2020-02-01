@@ -12,6 +12,13 @@
 <body>
 
 <nav th:insert="header.html :: header"></nav>
+<br>
+<ul class="cp_stepflow02">
+  <li class="completed"><span class="bubble"></span><span>STEP 1<br>お見積もり情報入力</span></li>
+  <li class="completed"><span class="bubble"></span><span>STEP 2<br>お見積もり情報確認</span></li>
+  <li class="completed"><span class="bubble"></span><span>STEP 3<br>概算見積もり結果</span></li>
+  <li class="active"><span class="bubble"></span><span>STEP 4<br>詳細見積もり依頼完了</span></li>
+</ul>
   <div class="ui main container">
     <div class="text-center">
       <h2>申し込みが完了しました。</h2>
@@ -25,6 +32,11 @@
 </div>
 <div class="text-center">
   <p>いずれかのボタンを押して終了してください。</p>
+  <p>
+    <font color="red">"ブラウザの戻るボタン" "更新ボタン" は利用しないでください</font>
+    <br>
+    <font color="red">※二重登録の原因になります</font>
+  </p>
 </div>
 <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
   <div class="form-group">
