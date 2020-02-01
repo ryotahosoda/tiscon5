@@ -68,6 +68,14 @@ public class EstimateController {
     }
 
     /**
+     * ブラウザを閉じる
+     */
+    @PostMapping(value = "submit", params = "WindowClose")
+    String WindowClose(Model model) {
+        return "top";
+    }
+
+    /**
      * 確認画面に遷移する。
      *
      * @param userOrderForm 顧客が入力した見積もり依頼情報
