@@ -91,7 +91,8 @@ public class EstimateService {
         if (dto.hasWashingMachineSettingOption()) {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
-        int [] a = {priceForDistance, pricePerTruck, priceForOptionalService, priceForDistance + pricePerTruck + priceForOptionalService};
+        // 1番目:距離による値段,2番目:トラック輸送費,3番目:オプション代金,4番目:合計料金,5番目:総段ボール数,6番目:距離
+        int [] a = {priceForDistance, pricePerTruck, priceForOptionalService, priceForDistance + pricePerTruck + priceForOptionalService, boxes, distanceInt};
         return a;
         //return priceForDistance + pricePerTruck + priceForOptionalService;
     }
