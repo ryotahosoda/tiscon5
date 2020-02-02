@@ -52,15 +52,15 @@
         <tr>
           <th>オプション代金</th>
           <td>
-            洗濯機設置工事　<span th:text="*{hasWashingMachineSettingOption} ? 'あり' : 'なし'"></span>
+            洗濯機設置工事
           </td>
           <td><span th:text="*{hasWashingMachineSettingOption} ? 'あり' : 'なし'"></span></td>
           <td><span th:text="${price[2]}"></span>円</td>
         </tr>
-          <th>合計</th>
+          <th bgcolor="#FFCCCC">合計</th>
           <td></td>
           <td></td>
-          <td bgcolor="#FFCCCC"><span th:text="${price[3]}"></span>円</td>
+          <td><span th:text="${price[3]}"></span>円</td>
         <tr>
         </tr>
         </tbody>
