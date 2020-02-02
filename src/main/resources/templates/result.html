@@ -14,14 +14,14 @@
 <nav th:insert="header.html :: header"></nav>
 <br>
 <ul class="cp_stepflow02">
-  <li class="completed"><span class="bubble"></span><span>STEP 1<br>お見積もり情報入力</span></li>
+  <li class="completed"><span class="bubble"></span><span>STEP 1<br>見積もり情報入力</span></li>
   <li class="active"><span class="bubble"></span><span>STEP 2<br>概算見積もり結果</span></li>
   <li><span class="bubble"></span><span>STEP 3<br>詳細見積もり依頼完了</span></li>
 </ul>
 <div class="container">
   <form th:action="@{/order}" th:object="${userOrderForm}" class="form-horizontal" method="post">
     <div class="col-sm-12">
-      <center><h2>概算お見積もり料金は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
+      <center><h2>概算見積もり料金は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
       <p align="right">※料金=<b>距離</b>[km]×100[円/km]+<b>トラック輸送費</b>+<b>オプション代金</b>(洗濯機設置工事)</p>
       <h4>内訳</h4>
       <table class="table table-bordered">

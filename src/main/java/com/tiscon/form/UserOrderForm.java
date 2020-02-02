@@ -29,14 +29,12 @@ public class UserOrderForm {
     private String oldPrefectureId;
 
     @NotBlank
-    @Size(min = 1, max = 100)
     private String oldAddress;
 
     @NotBlank
     private String newPrefectureId;
 
     @NotBlank
-    @Size(min = 1, max = 100)
     private String newAddress;
 
     @Numeric
