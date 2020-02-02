@@ -20,9 +20,8 @@
 </ul>
 <div class="container">
   <form th:action="@{/order}" th:object="${userOrderForm}" class="form-horizontal" method="post">
-    <center><h1>概算お見積り結果</h1></center>
     <div class="col-sm-12">
-      <center><h2>概算お見積り結果は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
+      <center><h2>概算お見積もり料金は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
       <p align="right">※料金=<b>距離</b>[km]×100[円/km]+<b>トラック輸送費</b>+<b>オプション代金</b>(洗濯機設置工事)</p>
       <h4>内訳</h4>
       <table class="table table-bordered">
@@ -86,6 +85,7 @@
         </tr>
         </tbody>
       </table>
+      <br>
       <h4>個人情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
@@ -132,6 +132,7 @@
         </tr>
         </tbody>
       </table>
+      <br>
       <h4>荷物情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
@@ -164,12 +165,10 @@
         </tr>
         </tbody>
       </table>
-      <div class="col-sm-12">
-        <center><h4>詳細見積もりを依頼する場合は詳細見積もり依頼ボタンをクリックしてください。</h4></center>
-      </div>
+      <br>
       <div class="form-group">
         <div class="text-center">
-          <button type="submit" name="backToInput" class="btn btn-primary">修正する</button>
+          <button type="submit" name="backToInput" class="btn btn-outline-secondary">修正する</button>
           <button type="submit" name="complete" class="btn btn-primary">詳細見積もり依頼</button>
         </div>
       </div>

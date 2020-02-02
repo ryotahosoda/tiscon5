@@ -21,7 +21,7 @@
 <div class="container">
   <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
     <span class="text-danger" th:if="${#fields.hasErrors('all')}">入力項目に誤りがあります</span>
-    <h1>お見積り情報入力</h1>
+    <h1>お見積もり情報入力</h1>
     <div class="col-sm-12">
       <fieldset>
         <legend>個人情報</legend>
@@ -98,7 +98,7 @@
       </fieldset>
       <div class="form-group">
         <div class="text-center">
-          <button type="submit" name="backToTop" class="btn btn-primary">TOPへ戻る</button>
+          <button type="submit" name="backToTop" class="btn btn-outline-secondary">TOPへ戻る</button>
           <button type="submit" name="calculation" class="btn btn-primary">概算見積もりを行う</button>
         </div>
       </div>
