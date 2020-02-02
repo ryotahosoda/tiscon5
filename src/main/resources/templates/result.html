@@ -24,26 +24,69 @@
     <center><h1>概算お見積り結果</h1></center>
     <div class="col-sm-12">
       <center><h2>概算お見積り結果は<font color="red"><span th:text="${price[3]}"></span></font>円です。</h2></center>
+      <p align="right">※料金=<b>距離</b>[km]×100[円/km]+<b>トラック輸送費</b>+<b>オプション代金</b>(洗濯機設置工事)</p>
       <h4>内訳</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
         <col span="2" style="background-color: #FFFFFF;">
+        <col span="3" style="background-color: #FFFFFF;">
+        <col span="4" style="background-color: #FFFFFF;">
         <tbody>
         <tr>
           <th style="width: 40%">距離</th>
+          <td>
+            <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
+            →
+            <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{newPrefectureId}">東京</span>
+          </td>
+          <td><span th:text="${price[5]}"></span> km</td>
           <td><span th:text="${price[0]}"></span>円</td>
         </tr>
         <tr>
-          <th>トラック</th>
+          <th>トラック輸送費</th>
+          <td>
+            段ボール換算*
+          </td>
+          <td><span th:text="${price[4]}"></span>個分</td>
           <td><span th:text="${price[1]}"></span>円</td>
         </tr>
         <tr>
-          <th>オプション</th>
+          <th>オプション代金</th>
+          <td>
+            洗濯機設置工事　<span th:text="*{hasWashingMachineSettingOption} ? 'あり' : 'なし'"></span>
+          </td>
+          <td><span th:text="*{hasWashingMachineSettingOption} ? 'あり' : 'なし'"></span></td>
           <td><span th:text="${price[2]}"></span>円</td>
+        </tr>
+          <th>合計</th>
+          <td></td>
+          <td></td>
+          <td bgcolor="#FFCCCC"><span th:text="${price[3]}"></span>円</td>
+        <tr>
         </tr>
         </tbody>
       </table>
-
+      <p>*段ボール換算は以下の表によって計算されます。また、段ボール80個まで3万円、200個まで5万円の輸送費がかかります。</p>
+      <table class="table table-bordered">
+        <tbody>
+        <tr bgcolor="#A9B7C7">
+          <th >荷物</th>
+          <th >1個あたりの段ボール数</th>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td>ベッド</td>
+          <td>20個</td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td>自転車</td>
+          <td>15個</td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td>洗濯機</td>
+          <td>10個</td>
+        </tr>
+        </tbody>
+      </table>
       <h4>個人情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
@@ -123,7 +166,7 @@
         </tbody>
       </table>
       <div class="col-sm-12">
-        <center><h3>詳細見積もりを依頼する場合は詳細見積もり依頼ボタンをクリックしてください。</h3></center>
+        <center><h4>詳細見積もりを依頼する場合は詳細見積もり依頼ボタンをクリックしてください。</h4></center>
       </div>
       <div class="form-group">
         <div class="text-center">
