@@ -123,6 +123,17 @@ public class EstimateDao {
     }
 
     /**
+     * トラック積載量テーブルに登録されているすべてのトラック積載量を取得する。
+     *
+     * @return すべてのトラック積載量
+     */
+    public List<TruckCapacity> getAllTruckCapacity() {
+        String sql = "SELECT * FROM TRUCK_CAPACITY";
+        return parameterJdbcTemplate.query(sql,
+                BeanPropertyRowMapper.newInstance(TruckCapacity.class));
+    }
+
+    /**
      * 段ボール数に応じたトラック料金を取得する。
      *
      * @param boxNum 総段ボール数
