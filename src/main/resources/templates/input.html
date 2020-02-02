@@ -41,6 +41,12 @@
           <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         </div>
         <div class="form-group">
+          <label for="oldZip">転居元住所（郵便番号）</label>
+          <input type="text" id="oldZip" name="oldZip" th:field="*{oldZip}"
+                 class="form-control" value="10000001"/>
+          <input type="button" onclick="SearchOldAddress();return false;" value="住所検索">
+        </div>
+        <div class="form-group">
           <label for="oldPrefectureId">転居元住所（都道府県）</label>
           <select id="oldPrefectureId" name="oldPrefectureId" class="form-control">
             <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{oldPrefectureId}">[[${prefecture.prefectureName}]]</option>
@@ -53,6 +59,22 @@
           <span class="text-danger" th:if="${#fields.hasErrors('oldAddress')}" th:errors="*{oldAddress}"></span>
         </div>
         <div class="form-group">
+          <label for="oldX">転居先住所（経度）</label>
+          <input type="text" id="oldX" name="oldX" th:field="*{oldX}"
+                 class="form-control" value="0"/>
+        </div>
+        <div class="form-group">
+          <label for="oldY">転居先住所（緯度）</label>
+          <input type="text" id="oldY" name="oldY" th:field="*{oldY}"
+                 class="form-control" value="0"/>
+        </div>
+        <div class="form-group">
+          <label for="newZip">転居先住所（郵便番号）</label>
+          <input type="text" id="newZip" name="newZip" th:field="*{newZip}"
+                 class="form-control" value="10000001"/>
+          <input type="button" onclick="SearchNewAddress();return false;" value="住所検索">
+        </div>
+        <div class="form-group">
           <label for="newPrefectureId">転居先住所（都道府県）</label>
           <select id="newPrefectureId" name="newPrefectureId" class="form-control">
             <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{newPrefectureId}">[[${prefecture.prefectureName}]]</option>
@@ -63,6 +85,16 @@
           <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
                  value="札幌市南区1"/>
           <span class="text-danger" th:if="${#fields.hasErrors('newAddress')}" th:errors="*{newAddress}"></span>
+        </div>
+        <div class="form-group">
+          <label for="newX">転居先住所（経度）</label>
+          <input type="text" id="newX" name="newX" th:field="*{newX}"
+                 class="form-control" value="0"/>
+        </div>
+        <div class="form-group">
+          <label for="newY">転居先住所（緯度）</label>
+          <input type="text" id="newY" name="newY" th:field="*{newY}"
+                 class="form-control" value="0"/>
         </div>
       </fieldset>
       <fieldset>
@@ -108,6 +140,7 @@
 <script src="../js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 <script src="../js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
 <script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../js/addressSearch.js" th:src="@{/js/addressSearch.js}"></script>
 </body>
 
 </html>

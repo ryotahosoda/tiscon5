@@ -26,6 +26,9 @@ public class UserOrderForm {
     private String email;
 
     @NotBlank
+    private String oldZip;
+
+    @NotBlank
     private String oldPrefectureId;
 
     @NotBlank
@@ -33,11 +36,25 @@ public class UserOrderForm {
     private String oldAddress;
 
     @NotBlank
+    private String oldX;
+
+    @NotBlank String oldY;
+
+    @NotBlank
+    private String newZip;
+
+    @NotBlank
     private String newPrefectureId;
 
     @NotBlank
     @Size(min = 1, max = 100)
     private String newAddress;
+
+    @NotBlank
+    private String newX;
+
+    @NotBlank
+    private String newY;
 
     @Numeric
     @NotBlank
@@ -82,6 +99,10 @@ public class UserOrderForm {
         this.email = email;
     }
 
+    public String getOldZip() { return oldZip; }
+
+    public void setOldZip(String oldZip) {this.oldZip = oldZip; }
+
     public String getOldPrefectureId() {
         return oldPrefectureId;
     }
@@ -98,6 +119,18 @@ public class UserOrderForm {
         this.oldAddress = oldAddress;
     }
 
+    public String getOldX() { return oldX; }
+
+    public void setOldX(String oldX) { this.oldX = oldX; }
+
+    public String getOldY() { return oldY; }
+
+    public void setOldY(String oldY) { this.oldY = oldY; }
+
+    public String getNewZip() { return newZip; }
+
+    public void setNewZip(String newZip) { this.newZip = newZip; }
+
     public String getNewPrefectureId() {
         return newPrefectureId;
     }
@@ -113,6 +146,14 @@ public class UserOrderForm {
     public void setNewAddress(String newAddress) {
         this.newAddress = newAddress;
     }
+
+    public String getNewX() { return newX; }
+
+    public void setNewX(String newX) { this.newX = newX; }
+
+    public String getNewY() { return newY; }
+
+    public void setNewY(String newY) { this.newY = newY; }
 
     public String getBox() {
         return box;
