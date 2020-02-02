@@ -6,13 +6,18 @@ import com.tiscon.dao.EstimateDao;
 import com.tiscon.domain.Customer;
 import com.tiscon.domain.CustomerOptionService;
 import com.tiscon.domain.CustomerPackage;
+import com.tiscon.domain.TruckCapacity;
 import com.tiscon.dto.UserOrderDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.reverseOrder;
 
 /**
  * 引越し見積もり機能において業務処理を担当するクラス。
@@ -47,7 +52,7 @@ public class EstimateService {
         BeanUtils.copyProperties(dto, customer);
         estimateDAO.insertCustomer(customer);
 
-        if (dto.hasWashingMachineSettingOption()) {
+        if (dto.getHasWashingMachineSettingOption()) {
             CustomerOptionService washingMachine = new CustomerOptionService();
             washingMachine.setCustomerId(customer.getCustomerId());
             washingMachine.setServiceId(OptionalServiceType.WASHING_MACHINE.getCode());
@@ -82,13 +87,14 @@ public class EstimateService {
                 + getBoxForPackage(dto.getBicycle(), PackageType.BICYCLE)
                 + getBoxForPackage(dto.getWashingMachine(), PackageType.WASHING_MACHINE);
 
-        // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
-        int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
+        // 箱に応じてトラックの種類と台数が変わり、それに応じて料金が変わるためトラック料金を算出する。
+        int pricePerTruck = this.getPriceForTruck(boxes);
+
 
         // オプションサービスの料金を算出する。
         int priceForOptionalService = 0;
 
-        if (dto.hasWashingMachineSettingOption()) {
+        if (dto.getHasWashingMachineSettingOption()) {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
         // 1番目:距離による値段,2番目:トラック輸送費,3番目:オプション代金,4番目:合計料金,5番目:総段ボール数,6番目:距離
@@ -106,5 +112,48 @@ public class EstimateService {
      */
     private int getBoxForPackage(int packageNum, PackageType type) {
         return packageNum * estimateDAO.getBoxPerPackage(type.getCode());
+    }
+
+
+    /**
+     * 段ボール数からトラック料金を算出する。
+     *
+     * @param boxes ダンボール数
+     * @return トラック料金
+     */
+    private int getPriceForTruck(int boxes) {
+        List<TruckCapacity> listTruckCapacity = estimateDAO.getAllTruckCapacity();
+        List<TruckCapacity> ascListTruckCapacityOrderByMaxBox = listTruckCapacity.stream().sorted(Comparator.comparing(TruckCapacity::getMaxBox, reverseOrder())).collect(Collectors.toList());
+        List<TruckCapacity> descListTruckCapacityOrderByMaxBox = listTruckCapacity.stream().sorted(Comparator.comparing(TruckCapacity::getMaxBox)).collect(Collectors.toList());
+
+        int price;
+        int maxBox;
+        int numTrucks;
+        int remBoxes = boxes;
+        int priceForTruck;
+
+        /* 積載量が最大のトラックが必要となる場合、その台数分の費用を加算する */
+        price = Integer.parseInt(descListTruckCapacityOrderByMaxBox.get(0).getPrice());
+        maxBox = Integer.parseInt(descListTruckCapacityOrderByMaxBox.get(0).getMaxBox());
+        numTrucks = remBoxes / maxBox;
+        priceForTruck = price * numTrucks;
+        remBoxes = remBoxes % maxBox;
+
+        if (remBoxes == 0) {
+            return priceForTruck;
+        }
+
+        /* 残りのダンボールを積むのに必要なトラックの費用を加算する */
+        for (TruckCapacity truckCapacity : ascListTruckCapacityOrderByMaxBox){
+            maxBox = Integer.parseInt(truckCapacity.getMaxBox());
+            System.out.println(maxBox);
+            if (maxBox >= remBoxes) {
+                price = Integer.parseInt(truckCapacity.getPrice());
+                priceForTruck += price;
+                break;
+            }
+        }
+
+        return priceForTruck;
     }
 }
