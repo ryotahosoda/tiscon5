@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Top画面</title>
+  <title>依頼完了画面</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" th:href="@{http://fonts.googleapis.com/css?family=Exo:900}"
@@ -15,9 +15,8 @@
 <br>
 <ul class="cp_stepflow02">
   <li class="completed"><span class="bubble"></span><span>STEP 1<br>お見積もり情報入力</span></li>
-  <li class="completed"><span class="bubble"></span><span>STEP 2<br>お見積もり情報確認</span></li>
-  <li class="completed"><span class="bubble"></span><span>STEP 3<br>概算見積もり結果</span></li>
-  <li class="active"><span class="bubble"></span><span>STEP 4<br>詳細見積もり依頼完了</span></li>
+  <li class="completed"><span class="bubble"></span><span>STEP 2<br>概算見積もり結果</span></li>
+  <li class="active"><span class="bubble"></span><span>STEP 3<br>詳細見積もり依頼完了</span></li>
 </ul>
   <div class="ui main container">
     <div class="text-center">
@@ -42,7 +41,7 @@
   <div class="form-group">
     <div class="text-center">
       <button type="submit" name="backToTop" class="btn btn-primary">TOPへ戻る</button>
-      <button type="submit" name="WindowClose" class="btn btn-primary">ブラウザを閉じる</button>
+      <input type="button" class="btn btn-primary" onclick="window.close();" value="ブラウザを閉じる">
     </div>
   </div>
 </form>
